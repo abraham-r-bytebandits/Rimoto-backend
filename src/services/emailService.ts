@@ -1,11 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 import sendEmail from './sendEmail';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const injectData = (template: string, data: Record<string, string>): string => {
   return template.replace(/{{(.*?)}}/g, (_, key) => data[key.trim()] || '');

@@ -4,7 +4,7 @@
   "description": "Rimoto Community backend — Express + TypeScript + Prisma + MySQL",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc && tsc-alias",
+    "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -36,7 +36,6 @@
   "keywords": [],
   "author": "",
   "license": "AGPL-3.0-only",
-  "type": "module",
   "dependencies": {
     "@prisma/client": "^6.9.0",
     "bcryptjs": "^3.0.2",
