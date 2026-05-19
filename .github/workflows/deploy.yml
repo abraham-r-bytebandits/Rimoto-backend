@@ -68,6 +68,10 @@ jobs:
 
             cp shared/.env current/.env
 
+            # Link shared uploads directory so images persist across deployments
+            mkdir -p shared/uploads
+            ln -sfn ../shared/uploads current/uploads
+
             cd current
 
             npx prisma generate
