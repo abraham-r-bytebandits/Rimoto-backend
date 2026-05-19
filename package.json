@@ -22,7 +22,7 @@
     "prisma:version": "prisma --version",
     "prisma:lint": "prisma validate",
     "prisma:seed": "tsx prisma/seed.ts",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
