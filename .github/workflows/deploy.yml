@@ -70,6 +70,8 @@ jobs:
 
             cd current
 
+            npx prisma generate
+
             npx prisma migrate deploy
 
             pm2 delete rimoto-backend || true
