@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as storiesService from '@/services/stories.service';
+import * as storiesService from '../services/stories.service';
 
 // GET /api/v1/public/stories
 export const getStories = async (req: Request, res: Response): Promise<void> => {

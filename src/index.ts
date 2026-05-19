@@ -5,19 +5,19 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 
 // Register env validation first — exits if invalid
-import { envConfig } from '@/configs/env';
+import { envConfig } from './configs/env';
 
 
 // Route handlers
-import authRoutes from '@/routes/authRoute';
-import publicRoutes from '@/routes/public.routes';
-import adminRoutes from '@/routes/admin.routes';
+import authRoutes from './routes/authRoute';
+import publicRoutes from './routes/public.routes';
+import adminRoutes from './routes/admin.routes';
 
 // Middleware
-import { authenticate } from '@/middlewares/authenticate';
-import { requireAdmin } from '@/middlewares/requireAdmin';
-import { notFound } from '@/middlewares/notFound';
-import { errorHandler } from '@/middlewares/errorHandler';
+import { authenticate } from './middlewares/authenticate';
+import { requireAdmin } from './middlewares/requireAdmin';
+import { notFound } from './middlewares/notFound';
+import { errorHandler } from './middlewares/errorHandler';
 
 const app: Express = express();
 

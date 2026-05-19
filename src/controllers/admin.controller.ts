@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import prisma from '@/lib/prisma';
-import * as adminLogService from '@/services/adminLog.service';
+import prisma from '../lib/prisma';
+import * as adminLogService from '../services/adminLog.service';
 
 // GET /api/v1/admin/dashboard/metrics
 export const getDashboardMetrics = async (_req: Request, res: Response): Promise<void> => {

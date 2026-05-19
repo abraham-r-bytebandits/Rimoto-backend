@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { getRides, getFeaturedRides, joinRide, submitRide } from '@/controllers/rides.controller';
-import { getStories, voteStory, createStory } from '@/controllers/stories.controller';
-import { getPopularRoutes } from '@/controllers/popularRoutes.controller';
-import { uploadRideImage, uploadPostImage } from '@/middlewares/upload';
-import { authenticate } from '@/middlewares/authenticate';
+import { getRides, getFeaturedRides, joinRide, submitRide } from '../controllers/rides.controller';
+import { getStories, voteStory, createStory } from '../controllers/stories.controller';
+import { getPopularRoutes } from '../controllers/popularRoutes.controller';
+import { uploadRideImage, uploadPostImage } from '../middlewares/upload';
+import { authenticate } from '../middlewares/authenticate';
 
 const router = Router();
 

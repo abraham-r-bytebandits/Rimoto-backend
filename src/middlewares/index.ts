@@ -6,8 +6,8 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
 
-import { corsConfig } from '@/configs/cors';
-import { cspDirectives } from '@/configs/csp';
+import { corsConfig } from '../configs/cors';
+import { cspDirectives } from '../configs/csp';
 
 import { rateLimiter } from './rateLimiter';
 

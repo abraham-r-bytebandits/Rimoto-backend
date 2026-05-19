@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-import prisma from '@/lib/prisma';
-import { envConfig } from '@/configs/env';
+import prisma from '../lib/prisma';
+import { envConfig } from '../configs/env';
 
 const JWT_SECRET = envConfig.JWT_SECRET;
 const JWT_REFRESH_SECRET = envConfig.JWT_REFRESH_SECRET;

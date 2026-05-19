@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import prisma from '@/lib/prisma';
+import prisma from '../lib/prisma';
 
 // GET /api/v1/public/popular-routes
 export const getPopularRoutes = async (_req: Request, res: Response): Promise<void> => {

@@ -13,9 +13,9 @@ import {
   updateAdminUserRole,
   updateAdminUserBan,
   deleteAdminUser,
-} from '@/controllers/admin.controller';
-import { createPopularRoute, deletePopularRoute } from '@/controllers/popularRoutes.controller';
-import { uploadRideImage } from '@/middlewares/upload';
+} from '../controllers/admin.controller';
+import { createPopularRoute, deletePopularRoute } from '../controllers/popularRoutes.controller';
+import { uploadRideImage } from '../middlewares/upload';
 
 const router = Router();
 

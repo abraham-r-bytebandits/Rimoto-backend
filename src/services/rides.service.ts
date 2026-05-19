@@ -1,5 +1,5 @@
 import { Prisma, SkillLevel } from '@prisma/client';
-import prisma from '@/lib/prisma';
+import prisma from '../lib/prisma';
 
 interface GetPaginatedRidesOptions {
   skillLevel?: string;

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-import prisma from '@/lib/prisma';
+import prisma from '../lib/prisma';
 
 // Extend Express.User — required when @types/passport is installed.
 // Passport types req.user as Express.User, so we must augment that interface
