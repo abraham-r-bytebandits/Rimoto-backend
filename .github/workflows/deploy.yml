@@ -74,6 +74,6 @@ jobs:
 
             pm2 delete rimoto-backend || true
 
-            pm2 start dist/main.js --name rimoto-backend
+            pm2 start dist/index.js --name rimoto-backend
 
             pm2 save
