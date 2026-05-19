@@ -1,0 +1,79 @@
+name: Deploy Rimoto Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Prisma Generate
+        run: npx prisma generate
+
+      - name: Build project
+        run: npm run build
+
+      - name: Remove unnecessary files
+        run: |
+          rm -rf node_modules
+          rm -rf src
+
+      - name: Install production dependencies
+        run: npm install --omit=dev
+
+      - name: Create deployment archive
+        run: |
+          tar -czf deploy.tar.gz \
+          dist \
+          prisma \
+          node_modules \
+          package.json
+
+      - name: Copy files to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "deploy.tar.gz"
+          target: "/home/ec2-user/rimoto/rimoto-backend"
+
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ec2-user/rimoto/rimoto-backend
+
+            rm -rf current
+            mkdir current
+
+            tar -xzf deploy.tar.gz -C current
+
+            cp shared/.env current/.env
+
+            cd current
+
+            npx prisma migrate deploy
+
+            pm2 delete rimoto-backend || true
+
+            pm2 start dist/main.js --name rimoto-backend
+
+            pm2 save

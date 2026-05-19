@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths" : {
+      "@/*": ["src/*"],
+      "controllers/*": ["src/controllers/*"],
+      "services/*": ["src/services/*"],
+      "utils/*": ["src/utils/*"],
+      "configs/*": ["src/configs/*"],
+      "middlewares/*": ["src/middlewares/*"],
+      "models/*": ["src/models/*"],
+      "routes/*": ["src/routes/*"],
+      "schemas/*": ["src/schemas/*"],
+      "types/*": ["src/types/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
+
+// End of file: package.json
