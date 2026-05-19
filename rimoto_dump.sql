@@ -1,17 +1,17 @@
 -- ============================================================
 -- RIMOTO DATABASE DUMP — Full Reset + Dummy Data
 -- DB: rimoto (MySQL)
--- Images served from: http://localhost:4000
+-- Images served from: https://rimoto-backend.duckdns.org
 -- ============================================================
 
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ─── WIPE ALL TABLES (FK-safe order) ────────────────────────
-TRUNCATE TABLE `admin_logs`;
-TRUNCATE TABLE `stories`;
-TRUNCATE TABLE `rides`;
-TRUNCATE TABLE `popular_routes`;
-TRUNCATE TABLE `users`;
+DELETE FROM `admin_logs`;
+DELETE FROM `stories`;
+DELETE FROM `rides`;
+DELETE FROM `popular_routes`;
+DELETE FROM `users`;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -34,7 +34,7 @@ VALUES
   'b0000000-0000-0000-0000-000000000001',
   'raj.kumar@rimoto.in',
   'Raj', 'Kumar',
-  'http://localhost:4000/uploads/posts/story1_nandi_hills.webp',
+  'https://rimoto-backend.duckdns.org/uploads/posts/story1_nandi_hills.webp',
   'USER', NULL,
   'Bangalore Bikers Club', '+91 98765 43210',
   FALSE, 0, DATE_SUB(NOW(), INTERVAL 30 DAY)
@@ -43,7 +43,7 @@ VALUES
   'b0000000-0000-0000-0000-000000000002',
   'priya.sharma@rimoto.in',
   'Priya', 'Sharma',
-  'http://localhost:4000/uploads/posts/story2_coorg.webp',
+  'https://rimoto-backend.duckdns.org/uploads/posts/story2_coorg.webp',
   'USER', NULL,
   'Mysuru Cycling Group', '+91 87654 32109',
   FALSE, 0, DATE_SUB(NOW(), INTERVAL 60 DAY)
@@ -52,7 +52,7 @@ VALUES
   'b0000000-0000-0000-0000-000000000003',
   'arjun.patel@rimoto.in',
   'Arjun', 'Patel',
-  'http://localhost:4000/uploads/posts/story3_western_ghats.webp',
+  'https://rimoto-backend.duckdns.org/uploads/posts/story3_western_ghats.webp',
   'USER', NULL,
   'Western Ghats Riders', '+91 76543 21098',
   FALSE, 0, DATE_SUB(NOW(), INTERVAL 90 DAY)
@@ -61,7 +61,7 @@ VALUES
   'b0000000-0000-0000-0000-000000000004',
   'meera.nair@rimoto.in',
   'Meera', 'Nair',
-  'http://localhost:4000/uploads/posts/story4_hampi.webp',
+  'https://rimoto-backend.duckdns.org/uploads/posts/story4_hampi.webp',
   'USER', NULL,
   'Coastal Cruisers Kerala', '+91 65432 10987',
   FALSE, 0, DATE_SUB(NOW(), INTERVAL 15 DAY)
@@ -85,7 +85,7 @@ VALUES
   'https://chat.whatsapp.com/rimoto-nandi-hills',
   142, 'APPROVED', 'HERO_BANNER',
   'b0000000-0000-0000-0000-000000000001',
-  '["http://localhost:4000/uploads/rides/ride1_nandi_hills.webp","http://localhost:4000/uploads/rides/ride2_coorg_trail.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/rides/ride1_nandi_hills.webp","https://rimoto-backend.duckdns.org/uploads/rides/ride2_coorg_trail.webp"]',
   DATE_SUB(NOW(), INTERVAL 5 DAY)
 ),
 (
@@ -98,7 +98,7 @@ VALUES
   'https://chat.whatsapp.com/rimoto-coorg-trail',
   89, 'APPROVED', 'WEEKEND_PICK',
   'b0000000-0000-0000-0000-000000000002',
-  '["http://localhost:4000/uploads/rides/ride2_coorg_trail.webp","http://localhost:4000/uploads/rides/ride3_hampi_tour.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/rides/ride2_coorg_trail.webp","https://rimoto-backend.duckdns.org/uploads/rides/ride3_hampi_tour.webp"]',
   DATE_SUB(NOW(), INTERVAL 10 DAY)
 ),
 (
@@ -111,7 +111,7 @@ VALUES
   'https://chat.whatsapp.com/rimoto-hampi-expedition',
   63, 'APPROVED', 'EDITORS_CHOICE',
   'b0000000-0000-0000-0000-000000000003',
-  '["http://localhost:4000/uploads/rides/ride3_hampi_tour.webp","http://localhost:4000/uploads/rides/ride4_mysuru_loop.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/rides/ride3_hampi_tour.webp","https://rimoto-backend.duckdns.org/uploads/rides/ride4_mysuru_loop.webp"]',
   DATE_SUB(NOW(), INTERVAL 15 DAY)
 ),
 (
@@ -124,7 +124,7 @@ VALUES
   'https://chat.whatsapp.com/rimoto-mysuru-loop',
   28, 'PENDING', NULL,
   'b0000000-0000-0000-0000-000000000004',
-  '["http://localhost:4000/uploads/rides/ride4_mysuru_loop.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/rides/ride4_mysuru_loop.webp"]',
   DATE_SUB(NOW(), INTERVAL 1 DAY)
 ),
 (
@@ -137,7 +137,7 @@ VALUES
   'https://chat.whatsapp.com/rimoto-chikmagalur',
   51, 'APPROVED', NULL,
   'b0000000-0000-0000-0000-000000000001',
-  '["http://localhost:4000/uploads/rides/ride1_nandi_hills.webp","http://localhost:4000/uploads/rides/ride4_mysuru_loop.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/rides/ride1_nandi_hills.webp","https://rimoto-backend.duckdns.org/uploads/rides/ride4_mysuru_loop.webp"]',
   DATE_SUB(NOW(), INTERVAL 7 DAY)
 );
 
@@ -155,9 +155,9 @@ VALUES
   'Nandi Hills',
   'SOLO_STORY',
   'There is something truly magical about watching the sun rise from the summit of Nandi Hills. As cyclists, we have a unique privilege — we earn every metre of elevation, and the reward is incomparable.\n\nThe route from Hebbal Flyover to Nandi Hills is one of Bangalore''s most beloved cycling corridors. The first 30 km are flat, cutting through the early morning mist of NH-44. Then the climb begins — a steady 10 km ascent that tests your lungs and your resolve. The gradient averages around 5–7%, with some steeper switchbacks near the top.\n\nAt the summit, the fog rolls through the trees like a slow tide. The temperature drops noticeably — bring a light jacket. The view from Tipu''s Drop looks out over the Deccan Plateau stretching endlessly to the horizon.\n\nBest time: October to February. Avoid summer — the exposed climb under harsh sun is unforgiving. Total distance: ~60 km round trip. Perfect for beginner to intermediate cyclists.',
-  '["http://localhost:4000/uploads/posts/story1_nandi_hills.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story1_nandi_hills.webp"]',
   '{"photos": 1, "videos": 0}',
-  '["http://localhost:4000/uploads/posts/story1_nandi_hills.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story1_nandi_hills.webp"]',
   'STORY', 4.9, 247,
   TRUE, 'APPROVED',
   'a0000000-0000-0000-0000-000000000001',
@@ -169,9 +169,9 @@ VALUES
   'Coorg',
   'TRIP_REVIEW',
   'I''ve done the Coorg coffee trail twice — once solo and once with the Rimoto crew — and both times it completely blew me away.\n\nThe route from Mysuru to Madikeri is around 130 km of absolute riding bliss. The first 60 km are fairly flat as you cross the Deccan Plateau. Then you enter the Western Ghats, and everything changes. The road narrows, coffee and cardamom plantations appear on either side, and the scent is incredible.\n\nThe toughest section is the last 30 km climb to Madikeri — multiple hairpin bends, steep gradients. Worth every drop of sweat.\n\nRoad condition: 8/10. Traffic: Moderate on weekdays, start by 6:30 AM. Highlights: Abbey Falls, Madikeri Fort, Raja''s Seat viewpoint.\n\nBest intermediate cycling route in Karnataka. Highly recommended.',
-  '["http://localhost:4000/uploads/posts/story2_coorg.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story2_coorg.webp"]',
   '{"photos": 1, "videos": 0}',
-  '["http://localhost:4000/uploads/posts/story2_coorg.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story2_coorg.webp"]',
   'REVIEW', 4.7, 183,
   FALSE, 'APPROVED',
   'b0000000-0000-0000-0000-000000000002',
@@ -183,9 +183,9 @@ VALUES
   'Western Ghats',
   'EXPEDITION',
   'The Western Ghats — a UNESCO World Heritage Site — offer cycling experiences that simply cannot be matched anywhere else in India.\n\nStretching over 1,600 km along the western edge of the Deccan Plateau, the Ghats offer diverse terrain for every kind of cyclist. From the lush tea gardens of Wayanad to the wind-swept passes of the Nilgiris, from the coffee valleys of Coorg to the pristine Konkan coast.\n\nOur recommended traverse runs Hassan → Chikmagalur → Kudremukh → Sakleshpur → Mangalore. Total: ~280 km over 4 days.\n\nDay 1: Hassan to Chikmagalur (70 km) — rolling hills through coffee estates.\nDay 2: Chikmagalur to Kudremukh (65 km) — dense forest, waterfalls.\nDay 3: Kudremukh to Sakleshpur (80 km) — the legendary Ghati Road.\nDay 4: Sakleshpur to Mangalore (65 km) — dramatic descent to the coast.\n\nAdvanced territory. Proper gear and ideally a support vehicle are essential.',
-  '["http://localhost:4000/uploads/posts/story3_western_ghats.webp","http://localhost:4000/uploads/posts/story2_coorg.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story3_western_ghats.webp","https://rimoto-backend.duckdns.org/uploads/posts/story2_coorg.webp"]',
   '{"photos": 2, "videos": 0}',
-  '["http://localhost:4000/uploads/posts/story3_western_ghats.webp","http://localhost:4000/uploads/posts/story2_coorg.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story3_western_ghats.webp","https://rimoto-backend.duckdns.org/uploads/posts/story2_coorg.webp"]',
   'STORY', 5.0, 412,
   TRUE, 'APPROVED',
   'a0000000-0000-0000-0000-000000000001',
@@ -197,9 +197,9 @@ VALUES
   'Hampi',
   'TRIP_REVIEW',
   'Hampi is not just a cycling destination — it''s a time machine. Riding through the ruins of the Vijayanagara Empire, with boulders balancing impossibly and ancient temples rising out of the scrub, is one of the most surreal experiences I''ve ever had.\n\nThe route from Hospet to Hampi is only ~13 km, but once inside Hampi you''ll ride 80–100 km just exploring the 40 sq km ruins complex.\n\nChallenge: Rocky, uneven terrain. A hybrid or mountain bike is strongly recommended. Road bikes will struggle.\n\nWeather: Hampi is HOT. Go between October and February. I went in November — high 20s, perfect.\n\nMust-visit: Virupaksha Temple, Vijaya Vittala Temple stone chariot, Matanga Hill sunset, Hemakuta Hill sunrise.\n\nFor history lovers and adventure cyclists alike, Hampi is non-negotiable. 10/10.',
-  '["http://localhost:4000/uploads/posts/story4_hampi.webp","http://localhost:4000/uploads/posts/story1_nandi_hills.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story4_hampi.webp","https://rimoto-backend.duckdns.org/uploads/posts/story1_nandi_hills.webp"]',
   '{"photos": 2, "videos": 0}',
-  '["http://localhost:4000/uploads/posts/story4_hampi.webp","http://localhost:4000/uploads/posts/story1_nandi_hills.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story4_hampi.webp","https://rimoto-backend.duckdns.org/uploads/posts/story1_nandi_hills.webp"]',
   'REVIEW', 4.8, 156,
   FALSE, 'APPROVED',
   'b0000000-0000-0000-0000-000000000001',
@@ -211,9 +211,9 @@ VALUES
   'Chikmagalur',
   'SOLO_STORY',
   'At 1,930 metres, Mullayanagiri is the highest peak in Karnataka — and cycling to its base is one of the most rewarding challenges in South India.\n\nThe approach from Chikmagalur town through the coffee estates is absolutely stunning. Morning fog clings to the eucalyptus trees lining the road. The air smells of coffee blossoms and wet earth.\n\nThe climb itself: 28 km of continuous ascent, gaining nearly 1,200 m of elevation. The road surface is in good condition up to about 15 km from the top, then gets rougher near the peak trail head.\n\nWe''d recommend starting no later than 5:30 AM from Chikmagalur to beat both traffic and afternoon clouds. Carry at least 3 litres of water — there are no refill points after the 10 km mark.\n\nThe descent is pure euphoria. Trust your brakes, take the hairpins wide, and savour every second.',
-  '["http://localhost:4000/uploads/posts/story3_western_ghats.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story3_western_ghats.webp"]',
   '{"photos": 1, "videos": 0}',
-  '["http://localhost:4000/uploads/posts/story3_western_ghats.webp"]',
+  '["https://rimoto-backend.duckdns.org/uploads/posts/story3_western_ghats.webp"]',
   'STORY', 4.6, 98,
   FALSE, 'APPROVED',
   'a0000000-0000-0000-0000-000000000001',

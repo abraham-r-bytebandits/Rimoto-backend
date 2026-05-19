@@ -28,23 +28,23 @@ function setTokenCookies(res: Response, accessToken: string, refreshToken: strin
   
   res.cookie('access_token', accessToken, {
     httpOnly: true,
-    secure: isProd,
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
     maxAge: 15 * 60 * 1000, // 15 mins
   });
 
   // rimoto_token: alias used by the admin frontend (AuthContext.tsx)
   res.cookie('rimoto_token', accessToken, {
     httpOnly: true,
-    secure: isProd,
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
     maxAge: 15 * 60 * 1000, // 15 mins
   });
 
   res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
-    secure: isProd,
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
 }
@@ -54,21 +54,21 @@ function clearTokenCookies(res: Response) {
 
   res.clearCookie('access_token', {
     httpOnly: true,
-    secure: isProd,
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
   });
 
   // Clear the admin frontend alias cookie
   res.clearCookie('rimoto_token', {
     httpOnly: true,
-    secure: isProd,
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
   });
   
   res.clearCookie('refresh_token', {
     httpOnly: true,
-    secure: isProd,
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
   });
 }
 
