@@ -5,6 +5,8 @@ import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.ethereal.email',
   port: parseInt(process.env.SMTP_PORT || '587', 10),
+  secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
+  service: process.env.SMTP_HOST === 'smtp.gmail.com' ? 'gmail' : undefined,
   auth: {
     user: process.env.SMTP_USER || 'ethereal_user',
     pass: process.env.SMTP_PASS || 'ethereal_pass',
