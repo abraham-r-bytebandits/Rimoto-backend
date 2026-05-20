@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
 import { prisma } from '../utils/prisma';
 import nodemailer from 'nodemailer';
+import { envConfig } from '../configs/env';
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.ethereal.email',
-  port: parseInt(process.env.SMTP_PORT || '587', 10),
-  secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
-  service: process.env.SMTP_HOST === 'smtp.gmail.com' ? 'gmail' : undefined,
+  host: envConfig.SMTP_HOST,
+  port: envConfig.SMTP_PORT,
+  secure: envConfig.SMTP_PORT === 465,
+  service: envConfig.SMTP_HOST === 'smtp.gmail.com' ? 'gmail' : undefined,
   auth: {
-    user: process.env.SMTP_USER || 'ethereal_user',
-    pass: process.env.SMTP_PASS || 'ethereal_pass',
+    user: envConfig.SMTP_USER,
+    pass: envConfig.SMTP_PASS,
   },
 });
 
