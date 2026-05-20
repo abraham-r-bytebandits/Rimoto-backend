@@ -2,8 +2,9 @@ import { Router } from 'express';
 import { getRides, getFeaturedRides, joinRide, submitRide } from '../controllers/rides.controller';
 import { getStories, voteStory, createStory } from '../controllers/stories.controller';
 import { getPopularRoutes } from '../controllers/popularRoutes.controller';
-import { uploadRideImage, uploadPostImage } from '../middlewares/upload';
+import { uploadRideImage, uploadPostImage, uploadClaimMedia } from '../middlewares/upload';
 import { authenticate } from '../middlewares/authenticate';
+import { submitClaim } from '../controllers/claims.controller';
 
 const router = Router();
 
@@ -20,5 +21,11 @@ router.post('/stories/:id/vote', voteStory);
 
 // ── Popular Routes ───────────────────────────────────────
 router.get('/popular-routes', getPopularRoutes);
+
+// ── Claims ───────────────────────────────────────────────
+router.post('/claims', uploadClaimMedia.fields([
+  { name: 'invoice', maxCount: 1 },
+  { name: 'productMedia', maxCount: 10 }
+]), submitClaim);
 
 export default router;

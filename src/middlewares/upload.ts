@@ -54,3 +54,31 @@ export const uploadPostImage = multer({
     fileSize: 5 * 1024 * 1024, // 5MB limit
   },
 });
+
+const claimStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const uploadPath = path.join(process.cwd(), 'uploads/claims');
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath, { recursive: true });
+    }
+    cb(null, uploadPath);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+  },
+});
+
+export const uploadClaimMedia = multer({
+  storage: claimStorage,
+  limits: {
+    fileSize: 100 * 1024 * 1024, // 100MB limit for invoice and videos
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/') || file.mimetype === 'application/pdf') {
+      cb(null, true);
+    } else {
+      cb(new Error('Only images, videos, and PDFs are allowed'));
+    }
+  }
+});

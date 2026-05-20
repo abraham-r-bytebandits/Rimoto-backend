@@ -54,79 +54,79 @@ enum PostType {
 // ─── MODELS ───────────────────────────────────────────────
 
 model User {
-  id               String    @id @default(uuid())
-  email            String    @unique
-  firstName        String
-  lastName         String
-  avatarUrl        String?
-  role             Role      @default(USER)
+  id        String  @id @default(uuid())
+  email     String  @unique
+  firstName String
+  lastName  String
+  avatarUrl String?
+  role      Role    @default(USER)
 
   // Credential — bcrypt hash
-  passwordHash     String?
+  passwordHash String?
 
   // Profile extras (user can fill post-signup)
-  clubAffiliation  String?
-  contactNumber    String?
+  clubAffiliation String?
+  contactNumber   String?
 
   // Moderation
-  isBanned         Boolean   @default(false)
-  strikeCount      Int       @default(0)
+  isBanned    Boolean @default(false)
+  strikeCount Int     @default(0)
 
-  joinedAt         DateTime  @default(now())
+  joinedAt DateTime @default(now())
 
   // Relations
-  rides            Ride[]
-  stories          Story[]
-  adminLogs        AdminLog[]
+  rides     Ride[]
+  stories   Story[]
+  adminLogs AdminLog[]
 
   @@map("users")
 }
 
 model Ride {
-  id                 String        @id @default(uuid())
+  id                 String     @id @default(uuid())
   title              String
   startLocation      String
   endLocation        String
   dateScheduled      DateTime
-  timeStart          String        // e.g. "5:30 AM"
-  distanceKm         Decimal       @db.Decimal(8, 2)
+  timeStart          String // e.g. "5:30 AM"
+  distanceKm         Decimal    @db.Decimal(8, 2)
   skillLevel         SkillLevel
-  bikeRequirement    String        @default("All Bikes")
+  bikeRequirement    String     @default("All Bikes")
   whatsappGroupUrl   String
-  whatsappJoinsCount Int           @default(0)
+  whatsappJoinsCount Int        @default(0)
 
-  status             RideStatus    @default(PENDING)
-  featuredSlot       FeaturedSlot?
+  status       RideStatus    @default(PENDING)
+  featuredSlot FeaturedSlot?
 
-  organizerId        String
-  organizer          User          @relation(fields: [organizerId], references: [id])
+  organizerId String
+  organizer   User   @relation(fields: [organizerId], references: [id])
 
-  imageUrls          Json?         // array of image URLs (CDN links or local paths)
+  imageUrls Json? // array of image URLs (CDN links or local paths)
 
-  createdAt          DateTime      @default(now())
+  createdAt DateTime @default(now())
 
   @@map("rides")
 }
 
 model Story {
-  id              String      @id @default(uuid())
-  title           String
-  destinationTag  String
-  flairType       String
-  contentBody     String      @db.LongText
-  mediaUrls       Json        // stored as JSON array: ["url1", "url2"]
-  mediaMeta       Json        // { photos: 4, videos: 1 }
-  images          Json?       // array of image URLs
-  postType        PostType    @default(REVIEW)
-  ratingScore     Decimal     @db.Decimal(3, 1)
-  voteCount       Int         @default(0)
-  isPinned        Boolean     @default(false)
-  status          StoryStatus @default(PENDING)
+  id             String      @id @default(uuid())
+  title          String
+  destinationTag String
+  flairType      String
+  contentBody    String      @db.LongText
+  mediaUrls      Json // stored as JSON array: ["url1", "url2"]
+  mediaMeta      Json // { photos: 4, videos: 1 }
+  images         Json? // array of image URLs
+  postType       PostType    @default(REVIEW)
+  ratingScore    Decimal     @db.Decimal(3, 1)
+  voteCount      Int         @default(0)
+  isPinned       Boolean     @default(false)
+  status         StoryStatus @default(PENDING)
 
-  authorId        String
-  author          User        @relation(fields: [authorId], references: [id])
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
 
-  createdAt       DateTime    @default(now())
+  createdAt DateTime @default(now())
 
   @@map("stories")
 }
@@ -134,12 +134,12 @@ model Story {
 model AdminLog {
   id             String         @id @default(uuid())
   actionSeverity ActionSeverity
-  actionType     String         // "Approved", "Rejected", "New story submitted"
+  actionType     String // "Approved", "Rejected", "New story submitted"
   message        String         @db.Text
   createdAt      DateTime       @default(now())
 
-  actorId        String
-  actor          User           @relation(fields: [actorId], references: [id])
+  actorId String
+  actor   User   @relation(fields: [actorId], references: [id])
 
   @@map("admin_logs")
 }
@@ -152,6 +152,56 @@ model PopularRoute {
   iframeUrl String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   @@map("popular_routes")
+}
+
+enum ClaimType {
+  WARRANTY
+  RETURN
+  EXCHANGE
+}
+
+enum ClaimStatus {
+  PENDING
+  REVIEWED
+  RESOLVED
+  REJECTED
+}
+
+model Claim {
+  id        String      @id @default(uuid())
+  claimType ClaimType
+  status    ClaimStatus @default(PENDING)
+
+  customerName String
+  orderNumber  String
+  email        String
+  phone        String
+
+  billingAddress  String? @db.Text
+  shippingAddress String? @db.Text
+
+  purchaseDate DateTime
+
+  productName  String?
+  productColor String?
+  productSize  String?
+
+  returningProductName  String?
+  returningProductColor String?
+  returningProductSize  String?
+
+  exchangeProductName  String?
+  exchangeProductColor String?
+  exchangeProductSize  String?
+
+  reason String @db.Text
+
+  invoiceUrl       String @db.Text
+  productMediaUrls Json // array of image/video urls
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("claims")
 }

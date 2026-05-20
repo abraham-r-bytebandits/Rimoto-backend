@@ -15,6 +15,7 @@ import {
   deleteAdminUser,
 } from '../controllers/admin.controller';
 import { createPopularRoute, deletePopularRoute } from '../controllers/popularRoutes.controller';
+import { getClaims } from '../controllers/claims.controller';
 import { uploadRideImage } from '../middlewares/upload';
 
 const router = Router();
@@ -44,5 +45,8 @@ router.delete('/users/:id', deleteAdminUser);
 // ── Popular Routes ───────────────────────────────────────
 router.post('/popular-routes', createPopularRoute);
 router.delete('/popular-routes/:id', deletePopularRoute);
+
+// ── Claims ───────────────────────────────────────────────
+router.get('/claims', getClaims);
 
 export default router;

@@ -21,6 +21,10 @@ const envSchema = z.object({
   EMAIL_PASSWORD: z.string().default(''),
   ACCESS_SECRET_KEY: z.string().default('access-secret'),
   REFRESH_SECRET_KEY: z.string().default('refresh-secret'),
+  SMTP_HOST: z.string().optional().default('smtp.ethereal.email'),
+  SMTP_PORT: z.coerce.number().optional().default(587),
+  SMTP_USER: z.string().optional().default('ethereal_user'),
+  SMTP_PASS: z.string().optional().default('ethereal_pass'),
 });
 
 const parsed = envSchema.safeParse(process.env);
